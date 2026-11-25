@@ -1,0 +1,850 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Proposal — Heaven Biryani × Karthik Karka (PlateAndPost)</title>
+<style>
+@import "./node_modules/@fontsource/inter/index.css";
+
+@page { size: 1920px 1080px; margin: 0 }
+* { box-sizing: border-box; margin: 0; padding: 0 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: #F5F5F7;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  padding: 120px 140px 96px;
+  background: #000000;
+  color: #F5F5F7;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  page-break-after: always;
+}
+.slide:last-child { page-break-after: auto }
+
+/* Slide Header & Footer Meta */
+.slide__label {
+  position: absolute;
+  top: 72px;
+  left: 140px;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #86868B;
+  font-weight: 600;
+}
+
+.slide__mark {
+  position: absolute;
+  bottom: 56px;
+  right: 140px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #86868B;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.slide__heading {
+  font-size: 52px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #F5F5F7;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.slide__sub {
+  font-size: 24px;
+  line-height: 1.35;
+  color: #86868B;
+  margin-bottom: 28px;
+  max-width: 65ch;
+}
+
+/* Bento Card Basics */
+.bento-card {
+  background: #1C1C1E;
+  border: 1px solid #2C2C2E;
+  border-radius: 16px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.bento-card--hero {
+  background: #1C1C1E;
+  border: 1px solid #3A3A3C;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E3B46B;
+  margin-bottom: 12px;
+}
+
+.badge--green { color: #30D158; }
+.badge--gray { color: #86868B; }
+
+.gold-stat {
+  font-size: 76px;
+  line-height: 1.05;
+  font-weight: 800;
+  color: #E3B46B;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.gold-stat--sub {
+  font-size: 22px;
+  font-weight: 600;
+  color: #F5F5F7;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #F5F5F7;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card-body {
+  font-size: 20px;
+  line-height: 1.45;
+  color: #86868B;
+}
+
+.card-body strong {
+  color: #F5F5F7;
+  font-weight: 600;
+}
+
+.card-body--gold {
+  color: #E3B46B;
+}
+
+.card-body--green {
+  color: #30D158;
+}
+
+/* Inline Glyph */
+.glyph {
+  width: 32px;
+  height: 32px;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: inline-block;
+  vertical-align: middle;
+}
+.glyph--gold { color: #E3B46B; }
+.glyph--green { color: #30D158; }
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  flex: 1;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  flex: 1;
+}
+
+.grid-4-bento {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  flex: 1;
+}
+
+.grid-quote {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Service Slide 4-box bento */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Cover Slide specific */
+.slide--cover {
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 160px;
+  padding-right: 160px;
+}
+.cover-brand {
+  font-size: 110px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #F5F5F7;
+}
+.cover-partner {
+  font-size: 72px;
+  font-weight: 700;
+  color: #E3B46B;
+  margin-top: 8px;
+}
+.cover-sub {
+  font-size: 32px;
+  color: #86868B;
+  margin-top: 24px;
+  max-width: 45ch;
+  line-height: 1.4;
+}
+.cover-rule {
+  width: 140px;
+  height: 4px;
+  background: #E3B46B;
+  border-radius: 2px;
+  margin: 44px 0;
+}
+.cover-meta {
+  background: #1C1C1E;
+  border: 1px solid #2C2C2E;
+  border-radius: 16px;
+  padding: 32px 40px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 22px;
+  color: #86868B;
+}
+.cover-meta strong {
+  color: #F5F5F7;
+}
+.cover-meta .highlight {
+  color: #E3B46B;
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: COVER -->
+<section class="slide slide--cover" id="slide-1">
+  <div class="slide__label">GROWTH STRATEGY · PROPOSAL</div>
+  <div class="cover-brand">Heaven Biryani</div>
+  <div class="cover-partner">× Karthik Karka</div>
+  <div class="cover-sub">A Growth Plan for Banswada's Best Biryani</div>
+  <div class="cover-rule"></div>
+  <div class="cover-meta">
+    <div>Prepared exclusively for: <strong>Mr. K. Ramesh</strong>, Owner — Heaven Biryani</div>
+    <div>Presented by: <strong class="highlight">Karthik Karka</strong>, AI Automation Agency (PlateAndPost)</div>
+    <div>Date: <strong>November 2026</strong> · Location: <strong>Banswada, Kamareddy District, Telangana — 503321</strong></div>
+  </div>
+  <div class="slide__mark">PlateAndPost</div>
+</section>
+
+<!-- SLIDE 2: WHAT WE HEARD -->
+<section class="slide" id="slide-2">
+  <div class="slide__label">RETENTION ENGINE · DISCOVERY</div>
+  <h2 class="slide__heading">What We Heard</h2>
+  <p class="slide__sub">In your own words, Mr. K. Ramesh — here is what the meeting told us.</p>
+  <div class="grid-quote">
+    <div class="bento-card">
+      <div class="badge badge--gray">MR. K. RAMESH — MEETING OBSERVATION</div>
+      <div class="card-title">&ldquo;People pass by the road, see the board, and come in.&rdquo;</div>
+      <div class="card-body card-body--gold">&rarr; The entire city doesn't know you exist yet.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--gray">MR. K. RAMESH — MEETING OBSERVATION</div>
+      <div class="card-title">&ldquo;4 to 5 calls every day asking for delivery — we say no.&rdquo;</div>
+      <div class="card-body card-body--gold">&rarr; Across 3 branches, 12–15 orders walked away every single day.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--gray">MR. K. RAMESH — MEETING OBSERVATION</div>
+      <div class="card-title">&ldquo;We don't have anyone's number.&rdquo;</div>
+      <div class="card-body card-body--gold">&rarr; Eleven years in business. Zero customers you can reach tomorrow.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--gray">MR. K. RAMESH — MEETING OBSERVATION</div>
+      <div class="card-title">&ldquo;Someone searched biryani near me — we don't show up.&rdquo;</div>
+      <div class="card-body card-body--gold">&rarr; Every hungry person in Banswada on Google right now cannot find you.</div>
+    </div>
+    <div class="bento-card bento-card--hero" style="grid-column: 1 / -1;">
+      <div class="badge badge--green">CONFIRMED CUSTOMER SENTIMENT</div>
+      <div class="card-title" style="font-size: 26px; color: #F5F5F7;">&ldquo;The biryani taste? Everyone loves it.&rdquo;</div>
+      <div class="card-body card-body--green" style="font-size: 24px; font-weight: 600;">&rarr; The product is already winning. The systems around it are not.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 3: THE REAL COST OF DOING NOTHING -->
+<section class="slide" id="slide-3">
+  <div class="slide__label">RETENTION &amp; SALES ENGINE</div>
+  <h2 class="slide__heading">The Real Cost of Doing Nothing</h2>
+  <p class="slide__sub">Before we talk about investment, let's talk about what is already being lost.</p>
+  <div class="grid-4-bento">
+    <div class="bento-card bento-card--hero" style="grid-row: span 2; justify-content: center; padding: 48px 40px;">
+      <div class="badge">ESTIMATED REVENUE LEFT ON TABLE</div>
+      <div class="gold-stat" style="font-size: 88px;">₹2,00,000+</div>
+      <div class="gold-stat--sub">Monthly Lost Revenue</div>
+      <div class="card-body" style="font-size: 22px; margin-top: 16px;">
+        Assumption: ₹250 average order value, conservative conversion rates, 3 branches combined.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">15 DELIVERY CALLS TURNED AWAY DAILY</div>
+      <div class="card-title" style="font-size: 40px; color: #F5F5F7; margin-bottom: 4px;">₹1,12,500 <span style="font-size: 22px; color: #86868B;">/ month</span></div>
+      <div class="card-body">15 orders &times; ₹250 daily loss across branches.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">NO GOOGLE MAPS LISTING</div>
+      <div class="card-title" style="font-size: 40px; color: #F5F5F7; margin-bottom: 4px;">₹50,000–₹1,00,000 <span style="font-size: 22px; color: #86868B;">/ month</span></div>
+      <div class="card-body">20–40 high-intent hungry walk-ins missed every month.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 4: WHAT WE WILL BUILD TOGETHER -->
+<section class="slide" id="slide-4">
+  <div class="slide__label">GROWTH ARCHITECTURE · 3 ENGINES</div>
+  <h2 class="slide__heading">What We Will Build Together</h2>
+  <p class="slide__sub">Seven services. One clear goal: fill the gaps the meeting revealed.</p>
+  <div class="grid-3">
+    <div class="bento-card">
+      <div class="badge">01 · MARKETING ENGINE</div>
+      <div class="card-title" style="font-size: 24px; color: #E3B46B;">Brand &amp; Traffic Acquisition</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px; font-size: 22px;">
+        <div><strong>M1</strong> &middot; AI Social Media Content System</div>
+        <div><strong>M2</strong> &middot; Google Maps Setup + AI Reviews</div>
+        <div><strong>M3</strong> &middot; AI UGC Video Ads</div>
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">02 · SALES ENGINE</div>
+      <div class="card-title" style="font-size: 24px; color: #30D158;">Automated Conversion Flow</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px; font-size: 22px;">
+        <div><strong>S1</strong> &middot; WhatsApp Ordering Chatbot</div>
+        <div><strong>S2</strong> &middot; Digital Menu Landing Page</div>
+        <div><strong>S3</strong> &middot; Zomato &amp; Swiggy Onboarding</div>
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--gray">03 · FULFILMENT ENGINE</div>
+      <div class="card-title" style="font-size: 24px; color: #F5F5F7;">Retention &amp; Quality Control</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px; font-size: 22px;">
+        <div><strong>F1</strong> &middot; AI Feedback Collection System</div>
+        <div><strong>Weekly</strong> &middot; Monday morning report sent directly to Mr. K. Ramesh</div>
+        <div><strong>Quality</strong> &middot; Resolve complaints before they turn public</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 5: M1: AI SOCIAL MEDIA CONTENT SYSTEM -->
+<section class="slide" id="slide-5">
+  <div class="slide__label">MARKETING ENGINE</div>
+  <h2 class="slide__heading">M1 — AI Social Media Content System</h2>
+  <p class="slide__sub">12–16 automated posts per month across Instagram and Facebook.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        No one in Banswada's <strong>14–35 age group</strong> knows Heaven Biryani exists online.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; 12–16 posts per month across Instagram and Facebook<br>
+        &bull; AI-generated poster designs, captions and hashtags<br>
+        &bull; Fully scheduled — nothing for Mr. K. Ramesh to manage manually
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; <strong>1,000+ local followers</strong> within 90 days<br>
+        &bull; <strong>15–25% increase in walk-ins</strong> within 60 days<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: consistent peak-hour scheduling, local audience targeted.</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹8k–₹12k</div>
+      <div class="gold-stat--sub">per month</div>
+      <div class="card-body">Mid-range benchmark: ₹10,000/mo. Fully automated.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 6: M2: GOOGLE MAPS SETUP + AI REVIEW MANAGEMENT -->
+<section class="slide" id="slide-6">
+  <div class="slide__label">MARKETING ENGINE</div>
+  <h2 class="slide__heading">M2 — Google Maps + AI Review Management</h2>
+  <p class="slide__sub">Full profile optimization and reputation management for all 3 branches.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        Heaven Biryani is invisible to anyone searching <strong>&ldquo;biryani near me&rdquo;</strong> in Banswada right now.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; Full Google Business Profile setup for all 3 branches<br>
+        &bull; Keyword-optimised description, food photos and shop photos<br>
+        &bull; AI-drafted responses to every review, weekly monitoring
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; <strong>Top 3 local search result</strong> within 60–90 days<br>
+        &bull; <strong>20–40 new walk-ins</strong> per month per branch<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: low competition in Banswada gives early entry advantage.</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹5k + ₹3k</div>
+      <div class="gold-stat--sub">₹5,000 one-time + ₹3,000/month</div>
+      <div class="card-body">Setup covers all 3 branches; monthly covers AI review responses.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 7: M3: AI UGC VIDEO ADS -->
+<section class="slide" id="slide-7">
+  <div class="slide__label">MARKETING ENGINE</div>
+  <h2 class="slide__heading">M3 — AI UGC Video Ads</h2>
+  <p class="slide__sub">High-converting video content designed to show real customers enjoying the food.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        No one who hasn't visited can feel what Heaven Biryani is like. <strong>A poster tells — a video sells.</strong>
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; 2 short UGC-style videos per month (15–30 seconds)<br>
+        &bull; AI-scripted, showing real customers enjoying biryani<br>
+        &bull; Posted on Instagram Reels &amp; Facebook for maximum organic reach
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; <strong>5,000–20,000 organic views</strong> per Reel in tier-2 food category<br>
+        &bull; <strong>1% conversion to visit = 50–200 new people</strong> every month<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: genuine local feel, correct peak posting times.</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹10k–₹15k</div>
+      <div class="gold-stat--sub">per month</div>
+      <div class="card-body">Mid-range benchmark: ₹12,000/mo. Includes AI scripting and edit.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 8: S1: WHATSAPP ORDERING CHATBOT -->
+<section class="slide" id="slide-8">
+  <div class="slide__label">SALES ENGINE</div>
+  <h2 class="slide__heading">S1 — WhatsApp Ordering Chatbot</h2>
+  <p class="slide__sub">Turn rejected delivery calls into automated revenue with zero staff friction.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        <strong>4–5 delivery calls turned away daily</strong> at Branch 3 alone. Those customers go to competitors every single day.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; WhatsApp Business API chatbot<br>
+        &bull; Messages &rarr; selects items &rarr; confirms order &rarr; payment link sent<br>
+        &bull; <strong>Zero staff involvement needed</strong> for the entire order flow
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; <strong>Capture 50% of lost delivery calls</strong> = 6–7 extra orders/day<br>
+        &bull; <strong>₹45,000–₹52,000 additional revenue</strong> per month<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: ₹250 average order, 50% conversion once ordering is easy.</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹15k + ₹5k</div>
+      <div class="gold-stat--sub">₹15,000 one-time + ₹5,000/month</div>
+      <div class="card-body">API setup, menu configuration, payment integration and hosting.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 9: S2: DIGITAL MENU LANDING PAGE -->
+<section class="slide" id="slide-9">
+  <div class="slide__label">SALES ENGINE</div>
+  <h2 class="slide__heading">S2 — Digital Menu Landing Page</h2>
+  <p class="slide__sub">A mobile-first conversion destination for every digital ad, post, and listing.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        Every online ad, Google Maps listing, and Instagram post currently leads nowhere. <strong>A curious customer hits a dead end.</strong>
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; Mobile-first single page — full menu, prices, food photos<br>
+        &bull; One-tap &ldquo;Order on WhatsApp&rdquo; button<br>
+        &bull; Fast loading, works on any phone, no app needed
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; <strong>Every marketing rupee spent</strong> now has a conversion destination<br>
+        &bull; Removes friction between interest and ordering instantly<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: page linked across Google Maps, Instagram bio, and ads.</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹8,000</div>
+      <div class="gold-stat--sub">one-time build</div>
+      <div class="card-body">Includes mobile responsive design, hosting and WhatsApp integration.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 10: S3: ZOMATO & SWIGGY ONBOARDING + OPTIMISATION -->
+<section class="slide" id="slide-10">
+  <div class="slide__label">SALES ENGINE</div>
+  <h2 class="slide__heading">S3 — Zomato &amp; Swiggy Onboarding</h2>
+  <p class="slide__sub">Capture hungry customers where they already look first across Banswada.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        The two apps most hungry people in Banswada open first have <strong>no listing for Heaven Biryani</strong>.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; Full registration on both Zomato and Swiggy for all 3 branches<br>
+        &bull; AI-optimised descriptions, keyword-rich titles, professional photos<br>
+        &bull; Ongoing management of ratings, reviews and responses
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; <strong>20–50 additional orders per day</strong> once listings are live<br>
+        &bull; Early entry advantage — low competition on these apps in Banswada<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: Mr. K. Ramesh agrees to platform commission (18–25%).</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹6k + ₹3k</div>
+      <div class="gold-stat--sub">₹6,000 one-time + ₹3,000/month</div>
+      <div class="card-body">Registration for all 3 branches + ongoing review/rating management.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 11: F1: AI FEEDBACK COLLECTION SYSTEM -->
+<section class="slide" id="slide-11">
+  <div class="slide__label">FULFILMENT ENGINE</div>
+  <h2 class="slide__heading">F1 — AI Feedback Collection System</h2>
+  <p class="slide__sub">Catch complaints and repeated kitchen issues silently before customers leave.</p>
+  <div class="service-grid">
+    <div class="bento-card">
+      <div class="badge badge--gray">THE PROBLEM IT SOLVES</div>
+      <div class="card-body" style="font-size: 22px;">
+        No feedback is collected. <strong>Problems repeat silently.</strong> Customers leave unhappy and never return — and no one knows why.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">WHAT WE BUILD</div>
+      <div class="card-body" style="font-size: 22px;">
+        &bull; After payment, Praveen sends 1 WhatsApp link: star rating + 1 line feedback<br>
+        &bull; AI compiles and analyses responses weekly<br>
+        &bull; Simple summary report sent directly to Mr. K. Ramesh every Monday morning
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">WHAT TO EXPECT</div>
+      <div class="card-body card-body--green" style="font-size: 22px;">
+        &bull; Problems caught and fixed within days instead of months<br>
+        &bull; <strong>15–20% improvement in repeat visits</strong> within 90 days<br>
+        <span style="font-size: 18px; color: #86868B;">Assumption: waiting time issue identified in meeting is resolved first.</span>
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">INVESTMENT</div>
+      <div class="gold-stat">₹4k + ₹2k</div>
+      <div class="gold-stat--sub">₹4,000 one-time + ₹2,000/month</div>
+      <div class="card-body">Setup of WhatsApp trigger + weekly AI analysis and Monday summaries.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 12: FULL INVESTMENT SUMMARY -->
+<section class="slide" id="slide-12">
+  <div class="slide__label">COMMERCIALS &amp; INVESTMENT</div>
+  <h2 class="slide__heading">Full Investment Summary</h2>
+  <p class="slide__sub">One-time covers setup, design and build. Monthly covers management, content and support.</p>
+  <div class="grid-3" style="flex: 0 0 auto; margin-bottom: 20px;">
+    <div class="bento-card bento-card--hero">
+      <div class="badge">TOTAL ONE-TIME SETUP</div>
+      <div class="gold-stat">₹38,000</div>
+      <div class="card-body">Covers design, builds &amp; onboarding across 3 branches.</div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">TOTAL MONTHLY RETAINER</div>
+      <div class="gold-stat">₹35,000</div>
+      <div class="gold-stat--sub">/ month</div>
+      <div class="card-body">Content, ads, chatbot, platforms &amp; reporting.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">SCOPE OF WORK</div>
+      <div class="gold-stat" style="color: #30D158;">7 Systems</div>
+      <div class="card-body">Mid-range figures. Scope adjusted with Mr. K. Ramesh.</div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="bento-card">
+      <div class="card-title">One-Time Breakdown (₹38,000)</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 8px;">
+        <div>&bull; M2: Google Maps Profile Setup — <strong>₹5,000</strong></div>
+        <div>&bull; S1: WhatsApp Ordering Chatbot — <strong>₹15,000</strong></div>
+        <div>&bull; S2: Digital Menu Landing Page — <strong>₹8,000</strong></div>
+        <div>&bull; S3: Zomato &amp; Swiggy Onboarding — <strong>₹6,000</strong></div>
+        <div>&bull; F1: AI Feedback Collection Setup — <strong>₹4,000</strong></div>
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="card-title">Monthly Breakdown (₹35,000/mo)</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 8px;">
+        <div>&bull; M1: AI Social Media System — <strong>₹10,000</strong></div>
+        <div>&bull; M2: Google Maps &amp; AI Reviews — <strong>₹3,000</strong></div>
+        <div>&bull; M3: AI UGC Video Ads (2/mo) — <strong>₹12,000</strong></div>
+        <div>&bull; S1: WhatsApp Chatbot Maintenance — <strong>₹5,000</strong></div>
+        <div>&bull; S3: Zomato &amp; Swiggy Management — <strong>₹3,000</strong></div>
+        <div>&bull; F1: AI Feedback Reports &amp; Support — <strong>₹2,000</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 13: WHAT THIS COULD RETURN -->
+<section class="slide" id="slide-13">
+  <div class="slide__label">SALES ENGINE · RETURN ON INVESTMENT</div>
+  <h2 class="slide__heading">What This Could Return</h2>
+  <p class="slide__sub">Conservative estimates based on the gaps confirmed in our meeting.</p>
+  <div class="grid-4-bento">
+    <div class="bento-card bento-card--hero" style="grid-row: span 2; justify-content: center; padding: 48px 40px;">
+      <div class="badge">ESTIMATED RETURN ON INVESTMENT</div>
+      <div class="gold-stat" style="font-size: 88px;">4x–9x</div>
+      <div class="gold-stat--sub" style="color: #E3B46B;">₹1,65,000–₹3,17,000 / month</div>
+      <div class="card-body" style="font-size: 22px; margin-top: 16px;">
+        On a monthly investment of ₹35,000.<br>
+        Conservative conversion rates, ₹250 average order value, 3 branches combined.
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">ORDER &amp; WALK-IN GAINS</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 10px; font-size: 20px;">
+        <div>WhatsApp delivery orders: <strong>₹45,000–₹52,000</strong></div>
+        <div>Google Maps new walk-ins: <strong>₹50,000–₹1,00,000</strong></div>
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">PLATFORM &amp; SOCIAL GAINS</div>
+      <div class="card-body" style="display: flex; flex-direction: column; gap: 10px; font-size: 20px;">
+        <div>Zomato &amp; Swiggy new orders: <strong>₹50,000–₹1,25,000</strong></div>
+        <div>Social media driven walk-ins: <strong>₹20,000–₹40,000</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 14: WHY THIS WILL WORK FOR HEAVEN BIRYANI -->
+<section class="slide" id="slide-14">
+  <div class="slide__label">GROWTH STRATEGY · STRUCTURAL ADVANTAGES</div>
+  <h2 class="slide__heading">Why This Will Work for Heaven Biryani</h2>
+  <p class="slide__sub">Five strategic advantages confirmed in our meeting.</p>
+  <div class="grid-2">
+    <div class="bento-card bento-card--hero">
+      <div class="badge badge--green">01 · PRODUCT ADVANTAGE</div>
+      <div class="card-title" style="color: #F5F5F7;">The taste is already exceptional</div>
+      <div class="card-body" style="font-size: 22px;">Mr. K. Ramesh, every customer who walks in says so. The core product has proven demand.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">02 · MARKET ADVANTAGE</div>
+      <div class="card-title" style="color: #F5F5F7;">Low digital competition</div>
+      <div class="card-body" style="font-size: 22px;">Banswada is a tier-2 city with very few optimized food listings. Early movers win big here.</div>
+    </div>
+    <div class="bento-card">
+      <div class="badge">03 · NETWORK SCALE</div>
+      <div class="card-title" style="color: #F5F5F7;">All 3 branches benefit from day one</div>
+      <div class="card-body" style="font-size: 22px;">This is not a one-shop experiment. The entire network scales together immediately.</div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge badge--green">04 · ZERO TECH FRICTION</div>
+      <div class="card-title" style="color: #F5F5F7;">Turnkey automation execution</div>
+      <div class="card-body" style="font-size: 22px;">Minimal effort from staff. Nothing requires Mr. K. Ramesh to learn technology — we handle it all.</div>
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 15: HOW WE WORK TOGETHER -->
+<section class="slide" id="slide-15">
+  <div class="slide__label">FULFILMENT &amp; TIMELINE</div>
+  <h2 class="slide__heading">How We Work Together</h2>
+  <p class="slide__sub">A phased 90-day rollout designed for zero kitchen disruption.</p>
+  <div class="grid-3" style="margin-bottom: 20px;">
+    <div class="bento-card bento-card--hero">
+      <div class="badge">MONTH 1</div>
+      <div class="card-title" style="color: #E3B46B;">Foundation</div>
+      <div class="card-body" style="font-size: 20px; line-height: 1.5;">
+        &bull; Google Maps setup for 3 branches<br>
+        &bull; Digital Menu Page live<br>
+        &bull; WhatsApp Chatbot live<br>
+        &bull; Zomato &amp; Swiggy registered<br>
+        &bull; Social Media accounts created<br>
+        &bull; Feedback system running
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--green">MONTH 2</div>
+      <div class="card-title" style="color: #30D158;">Momentum</div>
+      <div class="card-body" style="font-size: 20px; line-height: 1.5;">
+        &bull; First UGC videos live<br>
+        &bull; Social media posting consistent<br>
+        &bull; First Zomato/Swiggy orders flowing<br>
+        &bull; First feedback report reviewed with Mr. K. Ramesh
+      </div>
+    </div>
+    <div class="bento-card">
+      <div class="badge badge--gray">MONTH 3</div>
+      <div class="card-title" style="color: #F5F5F7;">Optimisation</div>
+      <div class="card-body" style="font-size: 20px; line-height: 1.5;">
+        &bull; Review what's working<br>
+        &bull; Double down on best-performing channel<br>
+        &bull; Adjust content &amp; operations based on feedback data
+      </div>
+    </div>
+  </div>
+  <div class="bento-card" style="padding: 20px 32px; background: #141416;">
+    <div class="card-body" style="font-size: 19px;">
+      <span style="color: #E3B46B; font-weight: 600;">Assumption:</span> Mr. K. Ramesh's team (Sai Kumar, Praveen and branch equivalents) cooperate with a short 1-hour onboarding session per branch.
+    </div>
+  </div>
+  <div class="slide__mark">Karthik Karka · PlateAndPost</div>
+</section>
+
+<!-- SLIDE 16: THE NEXT STEP -->
+<section class="slide" id="slide-16">
+  <div class="slide__label">SALES ENGINE · THE NEXT STEP</div>
+  <h2 class="slide__heading" style="font-size: 60px; color: #F5F5F7; margin-bottom: 8px;">
+    &ldquo;You focus on the biryani. We bring the customers.&rdquo;
+  </h2>
+  <p class="slide__sub" style="font-size: 26px; color: #E3B46B; margin-bottom: 28px;">
+    All that is needed from Mr. K. Ramesh to begin:
+  </p>
+  <div class="grid-3" style="margin-bottom: 24px;">
+    <div class="bento-card bento-card--hero">
+      <div class="badge">01 · CONFIRM SCOPE</div>
+      <div class="card-title">Select Services</div>
+      <div class="card-body" style="font-size: 22px;">
+        Confirm which services to start with from the growth roadmap.
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">02 · SHARE DETAILS</div>
+      <div class="card-title">Basic Information</div>
+      <div class="card-body" style="font-size: 22px;">
+        3 branch addresses, menu items, current prices &amp; existing photos.
+      </div>
+    </div>
+    <div class="bento-card bento-card--hero">
+      <div class="badge">03 · 1-HOUR SETUP</div>
+      <div class="card-title">Staff Onboarding</div>
+      <div class="card-body" style="font-size: 22px;">
+        One hour with Sai Kumar and Praveen for WhatsApp and feedback setup.
+      </div>
+    </div>
+  </div>
+  <div class="bento-card" style="padding: 24px 36px; background: #1C1C1E; border-color: #3A3A3C;">
+    <div style="font-size: 24px; font-weight: 700; color: #F5F5F7; margin-bottom: 8px;">
+      Karthik Karka &middot; <span style="color: #E3B46B;">AI Automation Agency (PlateAndPost)</span>
+    </div>
+    <div style="font-size: 20px; color: #86868B; display: flex; gap: 32px; flex-wrap: wrap; align-items: center;">
+      <span style="display: inline-flex; align-items: center; gap: 8px;"><svg class="glyph glyph--gold" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> 6303657478</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px;"><svg class="glyph glyph--gold" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> contact@example.com</span>
+      <span style="display: inline-flex; align-items: center; gap: 8px;"><svg class="glyph glyph--gold" style="width: 20px; height: 20px;" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Banswada, Kamareddy District, Telangana — 503321</span>
+    </div>
+  </div>
+  <div class="slide__mark">PlateAndPost</div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PlateAndPost — Client Offer Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+@page { size: 1920px 1080px; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0B0C0E;
+  color: #F3F4F6;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  padding: 100px 140px 80px;
+  background: #0B0C0E;
+  color: #F3F4F6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  page-break-after: always;
+}
+.slide:last-child { page-break-after: auto; }
+
+/* Top Header & Brand Stamp */
+.slide__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+}
+.slide__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #E5A93C;
+}
+.slide__brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #A0A5B5;
+}
+.slide__brand span {
+  color: #E5A93C;
+}
+
+/* Headings */
+.slide__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 54px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.slide__sub {
+  font-size: 22px;
+  line-height: 1.5;
+  color: #A0A5B5;
+  margin-bottom: 36px;
+  max-width: 75ch;
+}
+
+/* Bento Cards */
+.card {
+  background: #15171F;
+  border: 1px solid #262936;
+  border-radius: 16px;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+.card--highlight {
+  border-color: #E5A93C;
+  background: linear-gradient(180deg, #1A1D27 0%, #15171F 100%);
+}
+.card--green {
+  border-color: #34D399;
+}
+
+.card__icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 20px;
+  color: #E5A93C;
+}
+.card__icon--green {
+  color: #34D399;
+}
+
+.card__headline {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.card__text {
+  font-size: 19px;
+  line-height: 1.6;
+  color: #A0A5B5;
+}
+.card__text strong {
+  color: #FFFFFF;
+}
+
+/* Grids */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  flex: 1;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  flex: 1;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 24px;
+  flex: 1;
+}
+
+/* Quote cards */
+.quote-card {
+  background: #15171F;
+  border-left: 4px solid #E5A93C;
+  border-top: 1px solid #262936;
+  border-right: 1px solid #262936;
+  border-bottom: 1px solid #262936;
+  border-radius: 14px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.quote-card__quote {
+  font-size: 20px;
+  line-height: 1.55;
+  color: #FFFFFF;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.quote-card__sub {
+  font-size: 17px;
+  color: #E5A93C;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Price Display Section */
+.price-box {
+  background: #15171F;
+  border: 2px solid #E5A93C;
+  border-radius: 20px;
+  padding: 56px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  margin-top: 20px;
+}
+.price-block {
+  display: flex;
+  flex-direction: column;
+}
+.price-amount {
+  font-family: 'Syne', sans-serif;
+  font-size: 92px;
+  line-height: 1;
+  font-weight: 800;
+  color: #E5A93C;
+  letter-spacing: -0.03em;
+}
+.price-unit {
+  font-size: 24px;
+  font-weight: 600;
+  color: #F3F4F6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 14px;
+}
+.price-divider {
+  width: 2px;
+  height: 130px;
+  background: #262936;
+}
+.price-badge {
+  display: inline-block;
+  background: rgba(229, 169, 60, 0.15);
+  color: #E5A93C;
+  border: 1px solid #E5A93C;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+/* Steps */
+.step-card {
+  background: #15171F;
+  border: 1px solid #262936;
+  border-radius: 16px;
+  padding: 32px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.step-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: #E5A93C;
+  margin-bottom: 14px;
+}
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+.step-body {
+  font-size: 18px;
+  line-height: 1.55;
+  color: #A0A5B5;
+}
+
+/* Cover specific */
+.slide--cover {
+  justify-content: center;
+  padding-left: 160px;
+  padding-right: 160px;
+}
+.cover-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(229, 169, 60, 0.12);
+  border: 1px solid rgba(229, 169, 60, 0.4);
+  color: #E5A93C;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.cover-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 88px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  max-width: 20ch;
+  margin-bottom: 24px;
+}
+.cover-title span {
+  color: #E5A93C;
+}
+.cover-subtext {
+  font-size: 28px;
+  line-height: 1.5;
+  color: #A0A5B5;
+  max-width: 48ch;
+  margin-bottom: 48px;
+}
+.cover-meta {
+  display: flex;
+  gap: 40px;
+  font-size: 20px;
+  color: #A0A5B5;
+  border-top: 1px solid #262936;
+  padding-top: 32px;
+}
+.cover-meta strong {
+  color: #FFFFFF;
+}
+
+.slide__footer {
+  position: absolute;
+  bottom: 40px;
+  left: 140px;
+  right: 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #6B7280;
+  border-top: 1px solid #1C1E26;
+  padding-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: COVER -->
+<section class="slide slide--cover" id="slide-1">
+  <div class="cover-pill">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    Client Offer &amp; Implementation Plan
+  </div>
+  <h1 class="cover-title">Clear Food Photos for <span>Zomato, Swiggy &amp; Instagram</span></h1>
+  <p class="cover-subtext">No kitchen disruption. No heavy studio gear. Full menu photo makeover with an ongoing tracker so no dish goes up blank.</p>
+  <div class="cover-meta">
+    <div>Service: <strong>PlateAndPost</strong></div>
+    <div>Target Channels: <strong>Swiggy · Zomato · Instagram</strong></div>
+    <div>Proposal Date: <strong>November 2026</strong></div>
+  </div>
+</section>
+
+<!-- SLIDE 2: THE PROBLEM IN YOUR OWN WORDS -->
+<section class="slide" id="slide-2">
+  <div class="slide__header">
+    <div class="slide__tag">01 · Reality Check</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">The Problem, In Your Own Words</h2>
+  <p class="slide__sub">What cafe and restaurant owners tell us when we look at their online delivery menus.</p>
+  <div class="grid-4">
+    <div class="quote-card">
+      <div class="quote-card__quote">&ldquo;People love our food when they eat at our tables, but online they just scroll right past us.&rdquo;</div>
+      <div class="quote-card__sub">Lost Online Walk-Ins</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-card__quote">&ldquo;Half the dishes on our Swiggy and Zomato menu have no photo at all, or a dark picture taken years ago under a yellow tube light.&rdquo;</div>
+      <div class="quote-card__sub">Outdated Visuals</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-card__quote">&ldquo;When the kitchen launches a new dish, we are too busy serving customers to stop and take photos. So it sits as plain text, and nobody orders it.&rdquo;</div>
+      <div class="quote-card__sub">Forgotten New Items</div>
+    </div>
+    <div class="quote-card">
+      <div class="quote-card__quote">&ldquo;We cannot afford to stop our kitchen for a fancy photo shoot with bulky lights and strangers getting in the cooks' way.&rdquo;</div>
+      <div class="quote-card__sub">Kitchen Friction</div>
+    </div>
+  </div>
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Problem Diagnostics</div>
+  </div>
+</section>
+
+<!-- SLIDE 3: THE RESULT YOU GET -->
+<section class="slide" id="slide-3">
+  <div class="slide__header">
+    <div class="slide__tag">02 · The Transformation</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">The Result You Get</h2>
+  <p class="slide__sub">A mouthwatering online presence built to stop scrolling customers and turn clicks into orders.</p>
+  <div class="grid-2">
+    <div class="card card--highlight">
+      <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <div class="card__headline">Appetizing Photos on Every Listing</div>
+      <div class="card__text">Every single dish on your Zomato and Swiggy menu gets a crisp, appetizing, professional photo that makes customers hungry on their phone screens.</div>
+    </div>
+    <div class="card">
+      <svg class="card__icon card__icon--green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="card__headline">Zero Kitchen Disruption</div>
+      <div class="card__text">No studio lights, no tripods, and no stopping your kitchen service. We capture dishes as they are plated during your normal workflow and enhance them in the background.</div>
+    </div>
+    <div class="card">
+      <svg class="card__icon card__icon--green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="card__headline">No Dish Goes Up Blank Again</div>
+      <div class="card__text">You get a simple system on your phone so newly introduced items never sit unphotographed online for months waiting for someone to notice.</div>
+    </div>
+    <div class="card card--highlight">
+      <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      <div class="card__headline">Ready-Made Social Content</div>
+      <div class="card__text">Branded posters and short video ads ready for Instagram and WhatsApp status to remind people in town to visit your counter and order online.</div>
+    </div>
+  </div>
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Proven Deliverables</div>
+  </div>
+</section>
+
+<!-- SLIDE 4: WHAT IS INCLUDED (PART 1) -->
+<section class="slide" id="slide-4">
+  <div class="slide__header">
+    <div class="slide__tag">03 · Scope of Work</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">What Is Included: Photography &amp; Creative Assets</h2>
+  <p class="slide__sub">We handle the full production loop from raw dish to polished social and aggregator listings.</p>
+  <div class="grid-2">
+    <div class="card" style="padding: 40px;">
+      <div class="card__headline" style="font-size: 28px; margin-bottom: 20px; color: #E5A93C;">1. Full Menu Photo Audit &amp; Visit</div>
+      <div class="card__text" style="font-size: 20px; margin-bottom: 20px;">
+        We review your current Zomato and Swiggy listings and identify every single item that lacks a proper photo.
+      </div>
+      <div class="card__text" style="font-size: 20px;">
+        We visit during your preferred hours to take quick, natural photos of up to <strong>_____ dishes</strong> directly from your kitchen without slowing down service. We enhance each photo in the background into a clean, studio-grade food image.
+      </div>
+    </div>
+    <div class="card" style="padding: 40px;">
+      <div class="card__headline" style="font-size: 28px; margin-bottom: 20px; color: #E5A93C;">2. Dish Posters &amp; Short Video Ads</div>
+      <div class="card__text" style="font-size: 20px; margin-bottom: 16px;">
+        For each photographed dish, you receive:
+      </div>
+      <div class="card__text" style="font-size: 19px; line-height: 1.8;">
+        &bull; <strong>High-Resolution Photo:</strong> Formatted to exact Swiggy and Zomato specifications.<br>
+        &bull; <strong>Branded Food Poster:</strong> Sized for Instagram feeds and WhatsApp status.<br>
+        &bull; <strong>Short Video Ad:</strong> High-impact reel clip showcasing the dish in motion for social engagement.
+      </div>
+    </div>
+  </div>
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Deliverables · Visual Assets</div>
+  </div>
+</section>
+
+<!-- SLIDE 5: WHAT IS INCLUDED (PART 2 - THE SYSTEMS) -->
+<section class="slide" id="slide-5">
+  <div class="slide__header">
+    <div class="slide__tag">03 · Scope of Work</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">What Is Included: The Three Systems</h2>
+  <p class="slide__sub">Built so you maintain full control without ever touching complicated marketing software.</p>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card__headline" style="color: #E5A93C;">3. Menu Photo Board</div>
+      <div class="card__text" style="margin-bottom: 14px;">
+        One simple screen on your phone that lists every dish on your menu.
+      </div>
+      <div class="card__text">
+        A counter at the top shows how many dishes still need photos. You tap a dish to move it from <em>No Photo</em> to <em>Photo Taken</em>, <em>Edited</em>, and <em>Live</em>.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card__headline" style="color: #E5A93C;">4. New Dish Photo Check</div>
+      <div class="card__text" style="margin-bottom: 14px;">
+        A 10-second phone form for you or your counter staff whenever a new dish goes on the menu.
+      </div>
+      <div class="card__text">
+        Flags any dish missing a photo, logs it to a Google Sheet, and stops blank dishes from sitting unnoticed online. A blank name or zero price shows an immediate error.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card__headline" style="color: #E5A93C;">5. Weekly Poster Ideas</div>
+      <div class="card__text" style="margin-bottom: 14px;">
+        Every Monday morning, our system checks current food trends and upcoming food days.
+      </div>
+      <div class="card__text">
+        Turns them into 5 short poster and reel ideas tailored specifically to your menu, arriving directly in your inbox in plain words.
+      </div>
+    </div>
+  </div>
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Deliverables · Operations &amp; Automation</div>
+  </div>
+</section>
+
+<!-- SLIDE 6: HOW LONG IT TAKES -->
+<section class="slide" id="slide-6">
+  <div class="slide__header">
+    <div class="slide__tag">04 · Execution Timeline</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">How Long It Takes</h2>
+  <p class="slide__sub">Fast turnaround designed around your restaurant's operating schedule.</p>
+  <div class="grid-2">
+    <div class="card" style="padding: 48px;">
+      <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <div class="card__headline" style="font-size: 32px; color: #FFFFFF; margin-bottom: 16px;">The Photo Visit</div>
+      <div class="card__text" style="font-size: 22px; line-height: 1.6; margin-bottom: 24px;">
+        Takes approximately <strong>_____ hours</strong> during a quiet afternoon window (typically 3:30 PM to 5:00 PM).
+      </div>
+      <div class="card__text" style="font-size: 19px; color: #34D399; font-weight: 600;">
+        &check; No kitchen shutdown &bull; &check; Takes photos as plates are naturally prepared.
+      </div>
+    </div>
+    <div class="card card--highlight" style="padding: 48px;">
+      <svg class="card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <div class="card__headline" style="font-size: 32px; color: #FFFFFF; margin-bottom: 16px;">Editing &amp; Board Delivery</div>
+      <div class="card__text" style="font-size: 22px; line-height: 1.6; margin-bottom: 24px;">
+        Your enhanced photos, posters, video clips, and Menu Photo Board are completely set up and handed to you within <strong>_____ days</strong> of the shoot.
+      </div>
+      <div class="card__text" style="font-size: 19px; color: #E5A93C; font-weight: 600;">
+        &check; Upload-ready for Swiggy &amp; Zomato &bull; &check; Staff trained on 10-sec form.
+      </div>
+    </div>
+  </div>
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Timeline &amp; Turnaround</div>
+  </div>
+</section>
+
+<!-- SLIDE 7: THE INVESTMENT / PRICE -->
+<section class="slide" id="slide-7">
+  <div class="slide__header">
+    <div class="slide__tag">05 · Commercial Terms</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">Simple, Honest Pricing</h2>
+  <p class="slide__sub">No hidden agency retainers. Full upfront delivery with low-friction monthly maintenance.</p>
+  
+  <div class="price-box">
+    <div class="price-block">
+      <div class="price-badge">One-Time Setup</div>
+      <div class="price-amount">Rs 15,000</div>
+      <div class="price-unit">Setup Fee</div>
+      <div style="font-size: 18px; color: #A0A5B5; margin-top: 12px; max-width: 32ch;">
+        Covers full menu audit, photo visit, background enhancements, poster &amp; video creation, and system setup.
+      </div>
+    </div>
+    
+    <div class="price-divider"></div>
+    
+    <div class="price-block">
+      <div class="price-badge" style="color: #34D399; border-color: #34D399; background: rgba(52, 211, 153, 0.12);">Monthly Support</div>
+      <div class="price-amount" style="color: #34D399;">Rs 3,000</div>
+      <div class="price-unit">A Month</div>
+      <div style="font-size: 18px; color: #A0A5B5; margin-top: 12px; max-width: 32ch;">
+        Covers 5 weekly poster ideas every Monday, ongoing tracker maintenance, and new dish updates.
+      </div>
+    </div>
+  </div>
+  
+  <div style="margin-top: 36px; padding: 24px 32px; background: #15171F; border: 1px solid #262936; border-radius: 12px; font-size: 20px; color: #F3F4F6; text-align: center;">
+    <strong>Combined Investment:</strong> Rs 15,000 setup + Rs 3,000 a month
+  </div>
+
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Transparent Pricing</div>
+  </div>
+</section>
+
+<!-- SLIDE 8: WHAT HAPPENS AFTER YOU SAY YES -->
+<section class="slide" id="slide-8">
+  <div class="slide__header">
+    <div class="slide__tag">06 · Next Steps</div>
+    <div class="slide__brand">Plate<span>And</span>Post</div>
+  </div>
+  <h2 class="slide__title">What Happens After You Say Yes</h2>
+  <p class="slide__sub">Four straightforward steps to bring your restaurant's online presence to life.</p>
+  <div class="grid-2">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Review</div>
+      <div class="step-body">We do a 15-minute walkthrough of your current Swiggy and Zomato menus to list every item currently missing a photo.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">Visit</div>
+      <div class="step-body">We pick a quiet afternoon time that suits your kitchen to come in and take quick reference photos of your dishes.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">Enhance &amp; Build</div>
+      <div class="step-body">We enhance your food photos, design your posters and short video ads, and configure your Menu Photo Board and New Dish Check form.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-title">Go Live</div>
+      <div class="step-body">We help you update your aggregator listings, hand over your phone board, and your first Monday idea batch arrives the following week.</div>
+    </div>
+  </div>
+  <div class="slide__footer">
+    <div>PlateAndPost Proposal</div>
+    <div>Onboarding Workflow</div>
+  </div>
+</section>
+
+</body>
+</html>

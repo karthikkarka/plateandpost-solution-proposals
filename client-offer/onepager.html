@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PlateAndPost — One-Page Client Offer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+@page { size: A4 portrait; margin: 10mm 12mm 8mm; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  color: #1A1D20;
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #E5A93C;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+.brand-name span {
+  color: #D97706;
+}
+.brand-tagline {
+  font-size: 10.5px;
+  color: #4B5563;
+  margin-top: 1px;
+}
+.doc-pill {
+  background: #FEF3C7;
+  color: #92400E;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid #FDE68A;
+}
+
+/* Section styling */
+.section {
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #D97706;
+  border-radius: 2px;
+}
+
+/* Quotes */
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.quote-box {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-left: 3px solid #D97706;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 10px;
+  color: #374151;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+/* Results */
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.result-box {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+.result-box strong {
+  color: #0F172A;
+  display: block;
+  font-size: 10.5px;
+  margin-bottom: 2px;
+}
+.result-box p {
+  font-size: 10px;
+  color: #475569;
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* What is included */
+.included-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.included-item {
+  background: #FAFAFA;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+.included-item strong {
+  font-size: 11px;
+  color: #111827;
+}
+.included-item p {
+  font-size: 10px;
+  color: #4B5563;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+/* Timeline */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.timeline-card {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+.timeline-card strong {
+  color: #92400E;
+  font-size: 10.5px;
+}
+.timeline-card p {
+  color: #78350F;
+  font-size: 10px;
+  margin-top: 1px;
+}
+
+/* Price Box */
+.price-strip {
+  background: #111827;
+  color: #FFFFFF;
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+.price-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.price-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #FBBF24;
+}
+
+/* Steps */
+.step-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.step-box {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+.step-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #D97706;
+  margin-bottom: 2px;
+}
+.step-box strong {
+  display: block;
+  font-size: 10.5px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.step-box p {
+  font-size: 9.5px;
+  color: #4B5563;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.footer {
+  margin-top: 10px;
+  padding-top: 6px;
+  border-top: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  color: #6B7280;
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="header">
+    <div>
+      <div class="brand-name">Plate<span>And</span>Post</div>
+      <div class="brand-tagline">Clear food photos and short videos for your menu on Swiggy, Zomato, and Instagram.</div>
+    </div>
+    <div class="doc-pill">Client Offer</div>
+  </div>
+
+  <!-- 1. The Problem In Their Own Words -->
+  <div class="section">
+    <div class="section-title">The Problem, In Your Own Words</div>
+    <div class="quote-grid">
+      <div class="quote-box">&ldquo;People love our food when they eat at our tables, but online they just scroll right past us.&rdquo;</div>
+      <div class="quote-box">&ldquo;Half the dishes on our Swiggy and Zomato menu have no photo at all, or a dark, blurry picture taken years ago under a yellow tube light.&rdquo;</div>
+      <div class="quote-box">&ldquo;When the kitchen launches a new dish, we are too busy serving customers to stop and take photos. So the item sits on the app as plain text, and nobody orders it.&rdquo;</div>
+      <div class="quote-box">&ldquo;We cannot afford to stop our kitchen for a fancy photo shoot with bulky lights and strangers getting in the cooks' way.&rdquo;</div>
+    </div>
+  </div>
+
+  <!-- 2. The Result You Get -->
+  <div class="section">
+    <div class="section-title">The Result You Get</div>
+    <div class="result-grid">
+      <div class="result-box">
+        <strong>Appetizing Photos on Every Listing</strong>
+        <p>Every single dish on your Zomato and Swiggy menu gets a crisp, appetizing, professional photo that makes customers hungry on their phone screens.</p>
+      </div>
+      <div class="result-box">
+        <strong>Zero Kitchen Disruption</strong>
+        <p>No studio lights, no tripods, and no stopping your kitchen service. We capture dishes as they are plated during your normal workflow and enhance them in the background.</p>
+      </div>
+      <div class="result-box">
+        <strong>No Dish Ever Goes Live Blank Again</strong>
+        <p>You get a simple system on your phone so newly introduced items never sit unphotographed online for months waiting for someone to notice.</p>
+      </div>
+      <div class="result-box">
+        <strong>Ready-Made Social Content</strong>
+        <p>Branded posters and short video ads ready for Instagram and WhatsApp status to remind people in town to visit your counter and order online.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. What Is Included -->
+  <div class="section">
+    <div class="section-title">What Is Included</div>
+    <div class="included-list">
+      <div class="included-item">
+        <strong>1. Full Menu Photo Audit &amp; Visit:</strong>
+        <p>We review your current Zomato and Swiggy listings and identify every item lacking a proper photo. We visit during your preferred hours to take quick, natural photos of up to _____ dishes directly from your kitchen without slowing down service. We enhance each photo into a clean, studio-grade food image.</p>
+      </div>
+      <div class="included-item">
+        <strong>2. Dish Posters &amp; Short Video Ads:</strong>
+        <p>For each photographed dish, you receive: (1) one high-resolution photo formatted for Swiggy and Zomato, (2) one branded food poster for Instagram and WhatsApp status, and (3) one short video ad reel showcasing the dish in motion.</p>
+      </div>
+      <div class="included-item">
+        <strong>3. Menu Photo Board:</strong>
+        <p>One simple screen on your phone that lists every dish on your menu. A counter at the top shows how many dishes still need photos. You tap a dish to move it from <em>No Photo</em> to <em>Photo Taken</em>, <em>Edited</em>, and <em>Live</em>.</p>
+      </div>
+      <div class="included-item">
+        <strong>4. New Dish Photo Check:</strong>
+        <p>A 10-second phone form for you or your counter staff whenever a new dish goes on the menu. It records dish name, menu section, price, and photo status. It flags any dish missing a photo, logs it to a Google Sheet, and stops blank dishes from sitting unnoticed online. A blank name or zero price shows an immediate error.</p>
+      </div>
+      <div class="included-item">
+        <strong>5. Weekly Poster Ideas:</strong>
+        <p>Every Monday morning, our system checks current food trends and upcoming food days, turning them into 5 short poster and reel ideas tailored specifically to your menu, arriving directly in your inbox in plain words.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. How Long It Takes -->
+  <div class="section">
+    <div class="section-title">How Long It Takes</div>
+    <div class="timeline-grid">
+      <div class="timeline-card">
+        <strong>The Photo Visit:</strong>
+        <p>Takes approximately _____ hours during a quiet afternoon window.</p>
+      </div>
+      <div class="timeline-card">
+        <strong>Editing &amp; Board Delivery:</strong>
+        <p>Delivered within _____ days of the shoot.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. The Price -->
+  <div class="price-strip">
+    <div>
+      <div class="price-label">Transparent Investment</div>
+      <div style="font-size: 13px; color: #D1D5DB; margin-top: 2px;">One-time complete menu setup + ongoing weekly ideas &amp; tracker</div>
+    </div>
+    <div class="price-value">Rs 15,000 setup + Rs 3,000 a month</div>
+  </div>
+
+  <!-- 6. What Happens After You Say Yes -->
+  <div class="section">
+    <div class="section-title">What Happens After You Say Yes</div>
+    <div class="step-grid">
+      <div class="step-box">
+        <div class="step-num">01</div>
+        <strong>Review</strong>
+        <p>15-minute walkthrough of current menus to list items missing photos.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">02</div>
+        <strong>Visit</strong>
+        <p>We take quick reference photos during a quiet prep window without bulky gear.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">03</div>
+        <strong>Enhance &amp; Build</strong>
+        <p>We enhance photos, build posters, and configure the Board and Check form.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">04</div>
+        <strong>Go Live</strong>
+        <p>We help update aggregators, hand over your phone board, and start Monday ideas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>PlateAndPost &bull; Client Offer &amp; Scope of Work</div>
+    <div>Proposal Date: November 2026</div>
+  </div>
+</div>
+
+</body>
+</html>
