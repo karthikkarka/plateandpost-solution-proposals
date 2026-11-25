@@ -1,4 +1,4 @@
-# PlateAndPost — Automated Client Solution Proposal & Offer Engine
+﻿# PlateAndPost — Automated Client Solution Proposal & Offer Engine
 
 [![Puppeteer](https://img.shields.io/badge/Renderer-Puppeteer_Headless_Chrome-40B5A4?style=flat&logo=puppeteer&logoColor=white)](https://pptr.dev/)
 [![pdf-lib](https://img.shields.io/badge/PDF_Engine-pdf--lib_(1920x1080)-E3B46B?style=flat)](https://pdf-lib.js.org/)
@@ -22,8 +22,8 @@ During discovery with small restaurants and cafes, a recurring operational patte
 The generated proposals translate those business bottlenecks into a concrete 4-part deliverable:
 1. **Menu Photo Audit & Zero-Disruption Capture:** Audit Swiggy/Zomato gaps and capture dishes during normal plating hours.
 2. **Delivery Visuals, Posters & Reels:** High-resolution aggregator photos, branded Instagram/WhatsApp posters, and short video ads.
-3. **Menu Photo Board & New Dish Check:** A mobile tracker app ([menu-photo-board](https://github.com/onfroy69/menu-photo-board)) + 10-second n8n intake form ([n8n-cafe-automations](https://github.com/onfroy69/n8n-cafe-automations)) so no new dish ever launches without a photo.
-4. **Automated Weekly Marketing Ideas:** Scheduled AI trend digest ([cafe-news-digest-agent](https://github.com/onfroy69/cafe-news-digest-agent)) delivering weekly poster & reel concepts.
+3. **Menu Photo Board & New Dish Check:** A mobile tracker app ([menu-photo-board](https://github.com/karthikkarka/menu-photo-board)) + 10-second n8n intake form ([n8n-cafe-automations](https://github.com/karthikkarka/n8n-cafe-automations)) so no new dish ever launches without a photo.
+4. **Automated Weekly Marketing Ideas:** Scheduled AI trend digest ([cafe-news-digest-agent](https://github.com/karthikkarka/cafe-news-digest-agent)) delivering weekly poster & reel concepts.
 
 ### 3. Why We Built This Automation Pipeline
 Hand-editing presentation slides for every prospective restaurant slows down outreach and creates layout inconsistencies. Building proposals as **structured HTML/CSS templates rendered through Puppeteer + `pdf-lib`** ensures:
